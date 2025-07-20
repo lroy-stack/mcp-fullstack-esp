@@ -283,7 +283,7 @@ claude mcp add playwright
 
 1. **Clonar este repositorio**:
    ```bash
-   git clone https://github.com/tu-usuario/mcp-fullstack-esp.git
+   git clone https://github.com/lroy-stack/mcp-fullstack-esp.git
    cd mcp-fullstack-esp
    ```
 
@@ -309,58 +309,66 @@ Este comando verificará:
 
 ### Paso 3: Generar PRP Especializado
 
-Con SuperClaude v3, usamos los nuevos comandos:
+Con SuperClaude v3, usamos los comandos específicos del framework:
 
 ```bash
-/sc:implement prp_fullstack_base --persona-architect --plan
+/crear-mcp-prp prp_fullstack_base --thinkhard --persona-architect --c7 --seq --plan
 ```
 
 **Qué hace este comando**:
-- **`/sc:implement`**: Comando SuperClaude v3 para implementación de features
-- **`prp_fullstack_base`**: Template base para desarrollo MCP Full Stack
+- **`/crear-mcp-prp`**: Comando específico para crear PRPs MCP Full Stack
+- **`prp_fullstack_base`**: Template base para desarrollo MCP Full Stack (sin .md)
+- **`--thinkhard`**: Análisis arquitectónico profundo (10K tokens)
 - **`--persona-architect`**: Activa la persona especializada en arquitectura
+- **`--c7`**: Habilita Context7 para documentación actualizada
+- **`--seq`**: Habilita Sequential para análisis paso a paso
 - **`--plan`**: Genera plan detallado antes de implementar
 
 ### Paso 4: Desarrollo del Servidor MCP
 
-SuperClaude v3 maneja el desarrollo con múltiples comandos especializados:
+Ahora ejecutamos el PRP generado usando los comandos del framework:
 
 ```bash
+# Implementar el PRP completo
+/ejecutar-mcp-prp [nombre-del-prp-generado] --persona-architect --ultrathink --plan
+
+# O usar el flujo secuencial recomendado:
+
 # Fase 1: Análisis arquitectónico (30-45 min)
-/sc:analyze --architecture --persona-architect
+/analyze --arch --persona-architect --seq --validate
 
 # Fase 2: Diseño del sistema (45-60 min)
-/sc:design --system --persona-architect --seq
+/design --api --ddd --microservices --seq --ultrathink
 
 # Fase 3: Implementación backend (120-180 min)
-/sc:implement backend-tools --persona-backend 
+/build --api --persona-backend --seq --security --think --plan
 
 # Fase 4: Implementación frontend (90-120 min)
-/sc:implement ui-components --persona-frontend
+/build --react --persona-frontend --magic --c7 --think --plan
 
 # Fase 5: Testing integral (60-90 min)
-/sc:test --coverage --persona-qa
+/test --coverage --persona-qa --pup --validate
 
 # Fase 6: Seguridad y deployment (45-60 min)
-/sc:build --production --persona-security
+/scan --security --persona-security --owasp --validate
 ```
 
-### Paso 5: Quality Gates con SuperClaude v3
+### Paso 5: Quality Gates y Validación
 
 Cada fase incluye **guardrails automáticos** usando comandos especializados:
 
 ```bash
 # Validación de Arquitectura
-/sc:analyze --validate --persona-architect
+/analyze --arch --validate --persona-architect
 
 # Testing Comprehensivo
-/sc:test --unit --integration --e2e --persona-qa
+/test --coverage --e2e --pup --validate --persona-qa
 
 # Auditoría de Seguridad
-/sc:troubleshoot --security --owasp --persona-security
+/scan --security --owasp --persona-security --validate
 
 # Optimización Final
-/sc:improve --performance --persona-backend
+/improve --performance --persona-backend --iterate
 ```
 
 ## 🏗️ Arquitectura del Framework
@@ -390,22 +398,23 @@ Cada fase incluye **guardrails automáticos** usando comandos especializados:
 ### Para Desarrolladores Individuales
 ```bash
 # Generar un gestor de reservas completo
-/sc:implement "Desarrollar gestor de reservas para restaurante con sistema de mesas, clientes y analytics" --persona-architect
+/crear-mcp-prp prp_fullstack_base --thinkhard --persona-architect --c7 --seq
+# Luego: /ejecutar-mcp-prp [nombre-prp] --persona-architect --ultrathink
 ```
 
 ### Para Equipos de Desarrollo
 ```bash
 # Analizar arquitectura existente
-/sc:analyze --architecture --persona-architect
+/analyze --arch --persona-architect --seq --validate
 
 # Mejorar performance
-/sc:improve --performance --persona-backend
+/improve --performance --persona-backend --iterate
 ```
 
 ### Para Empresas
 ```bash
 # Auditoría de seguridad completa
-/sc:troubleshoot --security --owasp --persona-security --report
+/scan --security --owasp --persona-security --validate --report
 ```
 
 ## 📚 Estructura del Proyecto
@@ -437,38 +446,41 @@ mcp-fullstack-esp/
 cat CLAUDE.md
 cat INITIAL.md
 
-# Validar entorno con SuperClaude v3
-/sc:analyze --config --persona-architect --validate
+# Validar entorno con SuperClaude
+/analyze --config --persona-architect --validate --interactive
 ```
 
-### 2. Planificación con SuperClaude v3 (45-60 min)
+### 2. Planificación con SuperClaude (45-60 min)
 ```bash
 # Generar PRP especializado
-/sc:implement prp_fullstack_base --persona-architect --plan
+/crear-mcp-prp prp_fullstack_base --thinkhard --persona-architect --c7 --seq --plan --interactive
 
 # Validar PRP generado
-/sc:analyze [nombre-prp] --persona-architect --validate
+/analyze --code [nombre-prp] --persona-architect --validate
 ```
 
-### 3. Implementación con SuperClaude v3 (4-6 horas)
+### 3. Implementación con SuperClaude (4-6 horas)
 ```bash
-# Desarrollo modular paso a paso
-/sc:implement backend-core --persona-backend
-/sc:implement frontend-ui --persona-frontend
-/sc:design --database --persona-architect
-/sc:implement testing-suite --persona-qa
+# Implementar PRP completo
+/ejecutar-mcp-prp [nombre-prp] --persona-architect --ultrathink --plan --dry-run
+
+# O desarrollo modular paso a paso
+/build --init --persona-architect --seq --c7 --plan
+/build --api --persona-backend --seq --security --think
+/build --react --persona-frontend --magic --c7 --think
+/test --coverage --persona-qa --pup --validate
 ```
 
-### 4. Validación con SuperClaude v3 (1-2 horas)
+### 4. Validación con SuperClaude (1-2 horas)
 ```bash
 # Testing comprehensivo
-/sc:test --coverage --all --persona-qa
+/test --coverage --e2e --pup --validate --persona-qa
 
 # Auditoría de seguridad
-/sc:troubleshoot --security --owasp --persona-security
+/scan --security --owasp --persona-security --validate
 
 # Optimización final
-/sc:improve --performance --persona-backend
+/improve --performance --persona-backend --iterate
 ```
 
 ## 🎖️ Beneficios del Framework
@@ -520,7 +532,7 @@ USE_KNOWLEDGE_GRAPH=true
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/tu-usuario/mcp-fullstack-esp.git
+git clone https://github.com/lroy-stack/mcp-fullstack-esp.git
 cd mcp-fullstack-esp
 
 # Instalar dependencias Python
@@ -562,10 +574,10 @@ python scripts/validate-setup.ts
 
 ### Para Probar el Framework
 1. **Instalar SuperClaude v3** en Claude Code (ver sección anterior)
-2. **Clonar este repositorio** `mcp-fullstack-esp`
-3. **Ejecutar validación** de prerequisites con `/sc:analyze --config`
-4. **Generar tu primer PRP** con `/sc:implement prp_fullstack_base`
-5. **Desarrollar** usando comandos `/sc:*` especializados
+2. **Clonar este repositorio**: `git clone https://github.com/lroy-stack/mcp-fullstack-esp.git`
+3. **Ejecutar validación** de prerequisites con `/analyze --config --persona-architect --validate`
+4. **Generar tu primer PRP** con `/crear-mcp-prp prp_fullstack_base --thinkhard --persona-architect --c7 --seq`
+5. **Desarrollar** usando comandos especializados del framework
 
 ### Para Contribuir
 1. **Agregar nuevos ejemplos** a `ejemplos/`
